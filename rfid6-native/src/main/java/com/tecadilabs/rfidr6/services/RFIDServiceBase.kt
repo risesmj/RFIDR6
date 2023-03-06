@@ -7,7 +7,7 @@ import com.rscja.deviceapi.interfaces.ConnectionStatus
 import com.tecadilabs.rfidr6.entities.RFIDTagData
 import com.tecadilabs.rfidr6.interfaces.RFIDService
 
-object RFIDServiceBase: RFIDService{
+object RFIDServiceBase: RFIDService {
     private val uhf: RFIDWithUHFA8 = RFIDWithUHFA8.getInstance()
     private var isInitialized = false
     override val results: MutableList<RFIDTagData> = mutableListOf()
