@@ -2,12 +2,13 @@ package com.tecadilabs.rfidr6.services
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.rscja.deviceapi.RFIDWithUHFA8
 import com.rscja.deviceapi.interfaces.ConnectionStatus
 import com.tecadilabs.rfidr6.entities.RFIDTagData
 import com.tecadilabs.rfidr6.interfaces.RFIDService
 
-object RFIDServiceBase: RFIDService {
+class RFIDServiceBase: RFIDService {
     private val uhf: RFIDWithUHFA8 = RFIDWithUHFA8.getInstance()
     private var isInitialized = false
     override val results: MutableList<RFIDTagData> = mutableListOf()
@@ -24,10 +25,15 @@ object RFIDServiceBase: RFIDService {
         }
     }
 
-    override fun init(context: Context) {
-        if (!isInitialized){
-            isInitialized = uhf.init(context)
-            uhf.setEPCAndTIDMode()
+    override fun connect(context: Context) {
+
+        try {
+            uhf.free()
+            if (isDisconnected()) {
+                isInitialized = uhf.init(context)
+                uhf.setEPCAndTIDMode()
+            }
+        }catch(e: Exception){
         }
     }
 
@@ -53,7 +59,7 @@ object RFIDServiceBase: RFIDService {
     }
 
     override fun startRead(): Boolean {
-        if(isInitialized) {
+        if(isConnected()) {
             results.clear()
             return uhf.startInventoryTag()
         }
@@ -62,7 +68,7 @@ object RFIDServiceBase: RFIDService {
     }
 
     override fun stopRead() {
-        if(isInitialized) {
+        if(isConnected()) {
             uhf.stopInventory()
             results.forEach{
                 Log.d(

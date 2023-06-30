@@ -6,7 +6,7 @@ import com.tecadilabs.rfidr6.entities.RFIDTagData
 interface RFIDService {
     val results: MutableList<RFIDTagData>
 
-    fun init(context: Context)
+    fun connect(context: Context)
     fun readOne(): RFIDTagData?
     fun startRead(): Boolean
     fun stopRead()

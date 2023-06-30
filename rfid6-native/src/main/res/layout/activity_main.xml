@@ -29,14 +29,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:insetLeft="4dp"
-            android:text="Start Read" />
+            android:text="Start" />
 
         <Button
             android:id="@+id/btStopRead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:insetLeft="4dp"
-            android:text="Stop Read" />
+            android:text="Stop" />
+
+        <Button
+            android:id="@+id/btClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetLeft="4dp"
+            android:text="Clear" />
 
 
     </LinearLayout>

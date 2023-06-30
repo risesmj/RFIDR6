@@ -34,9 +34,9 @@ class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>()
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.epc.text = "EPC: " + dataSet[position].epc
-        viewHolder.tid.text = "TID: " + dataSet[position].tid
-        viewHolder.rsii.text = "RISS: " + dataSet[position].rssi
+        viewHolder.epc.text = "EPC: ${dataSet[position].epc}"
+        viewHolder.tid.text = "TID: ${dataSet[position].tid}"
+        viewHolder.rsii.text = "RISS: ${dataSet[position].rssi}"
     }
 
     override fun getItemCount() = dataSet.size
